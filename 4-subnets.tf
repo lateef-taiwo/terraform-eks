@@ -1,6 +1,6 @@
 resource "aws_subnet" "private_subnet_1" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.0/19"
+  cidr_block        = "10.0.0.0/19"
   availability_zone = local.zone1
 
   tags = {
@@ -12,7 +12,7 @@ resource "aws_subnet" "private_subnet_1" {
 
 resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.0.32/19"
+  cidr_block        = "10.0.32.0/19"
   availability_zone = local.zone2
 
   tags = {
@@ -25,7 +25,7 @@ resource "aws_subnet" "private_subnet_2" {
 
 resource "aws_subnet" "public_subnet_1" {
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.0.64/19"
+  cidr_block              = "10.0.64.0/19"
   availability_zone       = local.zone1
   map_public_ip_on_launch = true
 
@@ -38,7 +38,7 @@ resource "aws_subnet" "public_subnet_1" {
 
 resource "aws_subnet" "public_subnet_2" {
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.0.96/19"
+  cidr_block              = "10.0.96.0/19"
   availability_zone       = local.zone2
   map_public_ip_on_launch = true
 

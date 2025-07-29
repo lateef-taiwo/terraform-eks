@@ -1,25 +1,25 @@
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
-  route = {
+  route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat.id
   }
   tags = {
-    Name = "${local.env}-private"
+    Name = "${local.env}-private-rt"
   }
 }
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
-  route = {
+  route {
     cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat.id
+    gateway_id = aws_internet_gateway.igw.id
   }
 
   tags = {
-    Name = "${local.env}-public"
+    Name = "${local.env}-public-rt"
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_route_table_association" "private_subnet_1" {
 }
 
 resource "aws_route_table_association" "private_subnet_2" {
-  subnet_id      = aws_subnet.private_zone_2.id
+  subnet_id      = aws_subnet.private_subnet_2.id
   route_table_id = aws_route_table.private.id
 }
 
