@@ -5,8 +5,8 @@ resource "aws_subnet" "private_subnet_1" {
 
   tags = {
     "Name"                                                = "${local.env}-private-subnet-${local.zone1}"
-    "Kubernetes.io/role/internal-elb"                     = "1"
-    "kubernetes.io/cluster/&{local.env}-{local.eks_name}" = "owned"
+    "kubernetes.io/role/internal-elb"                     = "1"
+    "kubernetes.io/cluster/${local.env}-${local.eks_name}" = "owned"
   }
 }
 
@@ -17,8 +17,8 @@ resource "aws_subnet" "private_subnet_2" {
 
   tags = {
     "Name"                                                = "${local.env}-private-subnet-${local.zone2}"
-    "Kubernetes.io/role/internal-elb"                     = "1"
-    "kubernetes.io/cluster/&{local.env}-{local.eks_name}" = "owned"
+    "kubernetes.io/role/internal-elb"                     = "1"
+    "kubernetes.io/cluster/${local.env}-${local.eks_name}" = "owned"
   }
 
 }
@@ -31,8 +31,8 @@ resource "aws_subnet" "public_subnet_1" {
 
   tags = {
     "Name"                                                = "${local.env}-public-subnet-${local.zone1}"
-    "Kubernetes.io/role/elb"                              = "1"
-    "kubernetes.io/cluster/&{local.env}-{local.eks_name}" = "owned"
+    "kubernetes.io/role/elb"                              = "1"
+    "kubernetes.io/cluster/${local.env}-${local.eks_name}" = "owned"
   }
 }
 
@@ -44,7 +44,7 @@ resource "aws_subnet" "public_subnet_2" {
 
   tags = {
     "Name"                                                = "${local.env}-public-subnet-${local.zone2}"
-    "Kubernetes.io/role/elb"                              = "1"
-    "kubernetes.io/cluster/&{local.env}-{local.eks_name}" = "owned"
+    "kubernetes.io/role/elb"                              = "1"
+    "kubernetes.io/cluster/${local.env}-${local.eks_name}" = "owned"
   }
 }
