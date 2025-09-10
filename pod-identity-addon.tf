@@ -1,6 +1,6 @@
 # Define the EKS Pod Identity Addon which is a managed addon for EKS clusters.
 resource "aws_eks_addon" "pod_identity" {
-  cluster_name = aws_eks_cluster.eks_cluster.name
-  addon_name = "eks-pod-identity-agent"
+  cluster_name  = aws_eks_cluster.eks_cluster.name
+  addon_name    = "eks-pod-identity-agent"
   addon_version = "v1.3.8-eksbuild.2"
 }

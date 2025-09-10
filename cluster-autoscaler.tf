@@ -6,13 +6,13 @@ resource "aws_iam_role" "cluster_autoscaler" {
     Statement = [
       {
         Effect = "Allow"
-        Action= [
+        Action = [
           "sts:AssumeRole",
           "sts:TagSession"
         ]
         Principal = {
           Service = "pods.eks.amazonaws.com"
-      }
+        }
       }
     ]
   })
@@ -56,14 +56,14 @@ resource "aws_iam_policy" "cluster_autoscaler" {
 
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler" {
   policy_arn = aws_iam_policy.cluster_autoscaler.arn
-  role       = aws_iam_role.cluster_autoscaler.name 
+  role       = aws_iam_role.cluster_autoscaler.name
 }
 
 resource "aws_eks_pod_identity_association" "cluster_autoscaler" {
-  cluster_name = aws_eks_cluster.eks_cluster.name
-  namespace    = "kube-system"
+  cluster_name    = aws_eks_cluster.eks_cluster.name
+  namespace       = "kube-system"
   service_account = "cluster-autoscaler"
-  role_arn     = aws_iam_role.cluster_autoscaler.arn 
+  role_arn        = aws_iam_role.cluster_autoscaler.arn
 }
 
 resource "helm_release" "cluster_autoscaler" {
@@ -104,5 +104,5 @@ resource "helm_release" "cluster_autoscaler" {
     }
   ]
 
-  depends_on = [ helm_release.metrics_server ]
+  depends_on = [helm_release.metrics_server]
 }

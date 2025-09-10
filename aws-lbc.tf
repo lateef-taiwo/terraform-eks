@@ -44,19 +44,19 @@ resource "helm_release" "aws_lbc" {
   namespace  = "kube-system"
   version    = "1.8.1"
 
-  set = [ {
+  set = [{
     name  = "clusterName"
     value = aws_eks_cluster.eks_cluster.name
-  },
-  {
-    name  = "serviceAccount.name"
-    value = "aws-load-balancer-controller"
-  },
-  {
-    name  = "vpcId"
-    value = aws_vpc.main.id
+    },
+    {
+      name  = "serviceAccount.name"
+      value = "aws-load-balancer-controller"
+    },
+    {
+      name  = "vpcId"
+      value = aws_vpc.main.id
   }]
-  
+
   #values = [file("${path.module}/values/aws-lbc.yaml")]
   depends_on = [helm_release.cluster_autoscaler]
 }
@@ -99,7 +99,7 @@ resource "helm_release" "aws_lbc" {
 #   namespace       = "kube-system"
 #   service_account = "aws-load-balancer-controller"
 #   role_arn        = aws_iam_role.aws_lbc.arn
-  
+
 # }
 
 # resource "helm_release" "aws_lbc" {
