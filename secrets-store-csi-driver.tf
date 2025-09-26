@@ -61,7 +61,7 @@ resource "aws_iam_policy" "myapp_secrets" {
           "secretsmanager:GetSecretValue",
           "secretsmanager:DescribeSecret"
         ]
-        Resource = "*" # "arn:*:secretsmanager:*:*:secret:my-secret-kkargS"
+        Resource = "*" # "arn:*:secretsmanager:*:*:secret:my-secret-kkargS"  # for fine grained access, use specific Secrets Manager ARN
       }
     ]
   })
